@@ -7,7 +7,7 @@ const indexrouter = require('./routes/index')
 
 //views and layout settings
 app.set('view engine', 'ejs')
-app.set('views', __dirname + 'views')
+app.set('views', './views')
 app.set('layout', 'layouts/layout')
 
 //app utility
