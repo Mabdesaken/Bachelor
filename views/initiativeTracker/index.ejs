@@ -1,0 +1,7 @@
+<h2>Begin combat!</h2>
+<a href="/initiativeTracker/new"><button type="button">Add Character</button></a>
+<div>
+    <% initiativeTracker.forEach(initiative => { %>
+        <div><%= initiative.number %> | <%= initiative.name %></div>
+    <% }) %>
+</div>

@@ -5,6 +5,7 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+const bodyParser = require('body-parser')
 
 //Mongo db connection setup
 const mongoose = require('mongoose')
@@ -18,7 +19,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 
 //Setting up index router for root off app
 const indexrouter = require('./routes/index')
-const ITRouter = require('./routes/initialTracker')
+const ITRouter = require('./routes/initiativeTracker')
 
 //views and layout settings
 app.set('view engine', 'ejs')
@@ -28,9 +29,10 @@ app.set('layout', 'layouts/layout')
 //app utility
 app.use(expressLayouts)
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 
 //Telling app to use routes that are setup
 app.use('/', indexrouter)
-app.use('/initialTracker', ITRouter)
+app.use('/initiativeTracker', ITRouter)
 
 app.listen(process.env.PORT || 3003)
