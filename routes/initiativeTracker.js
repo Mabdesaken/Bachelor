@@ -19,7 +19,6 @@ router.get('/',  async (req, res) => {
     } catch {
         res.redirect('/')
     }
-    res.render(indexPath)
 })
 
 router.get('/new', (req, res) => {
