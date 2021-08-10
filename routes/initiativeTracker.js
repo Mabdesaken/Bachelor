@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Initiative = require('../models/initiative')
+const mongoose = require("mongoose");
+const e = require("express");
 
 let indexPath = 'initiativeTracker/index'
 
@@ -11,6 +13,7 @@ router.get('/',  async (req, res) => {
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
+        console.log()
         const initiative = await Initiative.find(searchOptions)
         res.render(indexPath, {
             initiativeTracker: initiative,
@@ -43,5 +46,18 @@ router.post('/', async (req, res) => {
         })
     }
 })
+
+function sortInitiatives () {
+
+
+    let mysort = new Initiative
+    initiatives.find({}, function (err, result) {
+        if (err) {
+            console.log("error query");
+        } else {
+            console.log(result);
+        }
+    }).sort(mysort);
+}
 
 module.exports = router

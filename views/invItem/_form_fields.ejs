@@ -1,0 +1,23 @@
+<div>
+    <label>Name</label>
+    <input type="text" name="name" value="<%= invItem.name%>">
+</div>
+<div>
+    <label>Amount</label>
+    <input type="number" name="amount" min="1" value="<%= invItem.amount%>">
+</div>
+<div>
+    <label>Weight</label>
+    <input type="number" name="pageCount" min="1" value="<%= invItem.weight%>">
+</div>
+<div>
+    <label>Magical Property</label>
+    <select data-bind>
+            <option label="Yes" value="<%= invItem.weight %>">Yes</option>
+            <option label="No" value="<%= invItem.weight %>">No</option>
+    </select>
+</div>
+<div>
+    <label>Description</label>
+    <textarea name="description"><%= invItem.description %></textarea>
+</div>

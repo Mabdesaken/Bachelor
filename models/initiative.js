@@ -10,5 +10,5 @@ const initiativeSchema = mongoose.Schema({
         required: true
     }
 })
-
-module.exports = mongoose.model('Initiative', initiativeSchema)
+let model = mongoose.model('Initiative', initiativeSchema)
+module.exports = model

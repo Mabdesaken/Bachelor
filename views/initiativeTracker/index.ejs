@@ -1,7 +1,16 @@
 <h2>Begin combat!</h2>
 <a href="/initiativeTracker/new"><button type="button">Add Character</button></a>
-
+<% let list = new Map()%>
 <% initiativeTracker.forEach(initiative => { %>
-    <div><%= initiative.number %> | <%= initiative.name %></div>
+    <%list.set(initiative.name, initiative.number)%>
 <% }) %>
+<% const mapSort1 = new Map([...list.entries()].sort((a, b) => b[1] - a[1])) %>
+<% mapSort1.forEach(function (key, value) { %>
+    <div>
+        <span><%= key %></span>
+        <span><%= value %></span>
+    </div>
+<% }) %>
+
+
 
