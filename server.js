@@ -20,7 +20,7 @@ db.once('open', () => console.log('Connected to Mongoose'))
 //Setting up index router for root off app
 const indexrouter = require('./routes/index')
 const ITRouter = require('./routes/initiativeTracker')
-const inventoryRouter = require('./routes/invItem')
+const inventoryRouter = require('./routes/invItems')
 
 //views and layout settings
 app.set('view engine', 'ejs')
@@ -35,6 +35,6 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 //Telling app to use routes that are setup
 app.use('/', indexrouter)
 app.use('/initiativeTracker', ITRouter)
-app.use('/invItem', inventoryRouter)
+app.use('/invItems', inventoryRouter)
 
 app.listen(process.env.PORT || 3003)

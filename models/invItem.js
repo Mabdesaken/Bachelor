@@ -5,12 +5,16 @@ const itemSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    amount: {
-        type: Number
+    owner: {
+        type: String,
+        required: true
     },
     weight: {
         type: Number,
         required: true
+    },
+    amount: {
+        type: Number
     },
     magical: {
         type: Boolean
@@ -20,4 +24,4 @@ const itemSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('invItem', itemSchema)
+module.exports = mongoose.model('invItems', itemSchema)

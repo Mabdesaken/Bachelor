@@ -1,0 +1,14 @@
+<h1>Inventory</h1>
+<a href="/invItems/new"><button type="button">Add Item to Inventory</button></a>
+<div>
+    <form action="/invItems" method="GET">
+        <label>Search Items by Owner</label>
+        <input type="text" name="owner" value="<%= searchOptions.owner %>">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<br>
+<% invItems.forEach(item => { %>
+    <div><%= item.owner %>'s <%= item.name %></div>
+<% }) %>

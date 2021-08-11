@@ -1,0 +1,35 @@
+<div>
+    <label>Name</label>
+    <input type="text" name="name" value="<%= invItems.name%>">
+</div>
+<div>
+    <label>Owner</label>
+    <select name="owner">
+        <% initiativeTracker.forEach(initiative => { %>
+            <%if (initiative.name === invItems.owner) {%>
+                <option selected label="<%= initiative.name %>" value="<%= initiative.name %>"><%= initiative.name %></option>
+            <% } else { %>
+                <option label="<%= initiative.name %>" value="<%= initiative.name %>"><%= initiative.name %></option>
+            <% } %>
+        <% }) %>
+    </select>
+</div>
+<div>
+    <label>Amount</label>
+    <input type="number" name="amount" min="1" value="<%= invItems.amount%>">
+</div>
+<div>
+    <label>Weight</label>
+    <input type="number" name="weight" min="1" value="<%= invItems.weight%>">
+</div>
+<div>
+    <label>Magical Property</label>
+    <select data-bind>
+            <option label="Yes" name="magical" value="<%= invItems.weight %>">Yes</option>
+            <option label="No" name="magical" value="<%= invItems.weight %>">No</option>
+    </select>
+</div>
+<div>
+    <label>Description</label>
+    <textarea name="description"><%= invItems.description %></textarea>
+</div>
