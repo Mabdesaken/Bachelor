@@ -6,10 +6,10 @@
     <label>Owner</label>
     <select name="owner">
         <% initiativeTracker.forEach(initiative => { %>
-            <%if (initiative.name === invItems.owner) {%>
-                <option selected label="<%= initiative.name %>" value="<%= initiative.name %>"><%= initiative.name %></option>
+            <%if (initiative.id === invItems.owner) {%>
+                <option selected label="<%= initiative.name %>" value="<%= initiative.id %>"><%= initiative.name %></option>
             <% } else { %>
-                <option label="<%= initiative.name %>" value="<%= initiative.name %>"><%= initiative.name %></option>
+                <option label="<%= initiative.name %>" value="<%= initiative.id %>"><%= initiative.name %></option>
             <% } %>
         <% }) %>
     </select>

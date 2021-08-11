@@ -1,0 +1,33 @@
+<div>
+    <h2>Name: </h2>
+    <span><h2 style="display: inline-block"><%= initiativeTracker.name %> </h2></span>
+    <span><a href="/initiativeTracker/<%= initiativeTracker.id %>/edit">Edit</a></span>
+    <span><%- include('../partials/deleteForm',
+        { url: `/initiativeTracker/${initiativeTracker.id}` }) %></span>
+    <span><h2>Initiative: <%= initiativeTracker.number %> </h2></span>
+</div>
+
+
+
+<% let encumberance = 0 %>
+<% if (itemsOfPlayer.length > 0) { %>
+    <h2><%= initiativeTracker.name %>'s Inventory</h2>
+    <% itemsOfPlayer.forEach(item => { %>
+        <div>
+            <span><%= item.amount%>:</span>
+            <span><%= item.name%></span>
+            <span> Weight: <%= item.weight%> lbs</span>
+        </div>
+        <% encumberance = encumberance + item.weight%>
+    <% }) %>
+<% } else { %>
+    <h2><%= initiativeTracker.name %>'s Inventory is empty</h2>
+<% } %>
+
+<div>
+    <h3>Total Weight: <%= encumberance%> lbs</h2>
+</div>
+
+<a href="/initiativeTracker/index">
+    <button type="submit">Go Back</button>
+</a>

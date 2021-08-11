@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const invItems = require('../models/invItem')
-const initiativeTracker = require('../models/initiative')
+const initiativeTracker = require('../models/initiativeTracker')
 
 let indexPath = 'invItems/index'
 

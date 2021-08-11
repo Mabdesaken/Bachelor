@@ -1,19 +1,19 @@
 <h2>Begin combat!</h2>
 <a href="/initiativeTracker/new"><button type="button">Add Character</button></a>
-<% let list = new Map()%>
-<!-- Iterating through all the objects send by the initiativeTracker route put them into a list,
-reverse the order such that it is descending order, and display them on the page in individual
-divs and spans to optimise styling -->
 <% initiativeTracker.forEach(initiative => { %>
-    <%list.set(initiative.name, initiative.number)%>
-<% }) %>
-<% const mapSort1 = new Map([...list.entries()].sort((a, b) => b[1] - a[1])) %>
-<% mapSort1.forEach(function (key, value) { %>
     <div>
-        <span><%= key %></span>
-        <span><%= value %></span>
+        <span><%= initiative.number %></span>
+        <span><%= initiative.name %></span>
+        <a href="/initiativeTracker/<%= initiative.id %>">View</a>
+        <a href="/initiativeTracker/<%= initiative.id %>/edit">Edit</a>
+        <span>
+            <%- include('../partials/deleteForm',
+            {url: `/initiativeTracker/${initiative.id}`})%>
+        </span>
     </div>
 <% }) %>
+
+
 
 
 

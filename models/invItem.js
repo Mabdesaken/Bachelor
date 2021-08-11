@@ -6,8 +6,9 @@ const itemSchema = mongoose.Schema({
         required: true
     },
     owner: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Owner'
     },
     weight: {
         type: Number,

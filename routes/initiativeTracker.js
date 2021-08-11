@@ -1,11 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const Initiative = require('../models/initiative')
-const mongoose = require("mongoose");
-const e = require("express");
+const Initiative = require('../models/initiativeTracker')
+const InvItem = require('../models/invItem')
 
 let indexPath = 'initiativeTracker/index'
-
 
 router.get('/',  async (req, res) => {
     let searchOptions = {}
@@ -13,8 +11,7 @@ router.get('/',  async (req, res) => {
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try {
-        console.log()
-        const initiative = await Initiative.find(searchOptions)
+        const initiative = await Initiative.find(searchOptions).sort({number: 'desc'}).exec()
         res.render(indexPath, {
             initiativeTracker: initiative,
             searchOptions: req.query
@@ -24,8 +21,9 @@ router.get('/',  async (req, res) => {
     }
 })
 
+//Find New Page
 router.get('/new', (req, res) => {
-    res.render('initiativeTracker/new', { initiative: new Initiative() })
+    res.render('initiativeTracker/new', { initiativeTracker: new Initiative() })
 })
 
 router.post('/', async (req, res) => {
@@ -36,28 +34,75 @@ router.post('/', async (req, res) => {
     })
     try {
         let newInitiative = await initiative.save()
-        res.redirect(`initiativeTracker`)
-
-
+        res.redirect(`initiativeTracker/${newInitiative.id}`)
     } catch {
         res.render('initiativeTracker/new',{
-            initiative: initiative,
+            initiativeTracker: initiative,
             errorMessage: 'Error creating initiative'
         })
     }
 })
 
-function sortInitiatives () {
+//Show the pages for each user who has initiative
+router.get('/:id', async (req, res) => {
+    try {
+        const init = await Initiative.findById(req.params.id)
+        const items = await InvItem.find({ owner: init.id })
+        res.render('initiativeTracker/show', {
+            initiativeTracker: init,
+            itemsOfPlayer: items
+        })
+    } catch {
+        res.redirect('/')
+    }
+})
 
+//Making edit page for our initiative and user
+router.get('/:id/edit', async (req, res) => {
+    try {
+        let initiative = await Initiative.findById(req.params.id)
+        res.render('initiativeTracker/edit', {
+            initiativeTracker: initiative
+        })
+    } catch {
+        res.redirect('/initiativeTracker')
+    }
+})
 
-    let mysort = new Initiative
-    initiatives.find({}, function (err, result) {
-        if (err) {
-            console.log("error query");
+//Update initiative
+router.put('/:id', async (req, res) => {
+    let initiative
+    try {
+        initiative = await Initiative.findById(req.params.id)
+        initiative.name = req.body.name
+        await initiative.save()
+        res.redirect(`/initiativeTracker/${initiative.id}`)
+    } catch {
+        if(initiative == null) {
+            res.redirect('/')
         } else {
-            console.log(result);
+            res.render('initiativeTracker/edit',{
+                initiativeTracker: initiative,
+                errorMessage: 'Error updating initiative'
+            })
         }
-    }).sort(mysort);
-}
+    }
+})
+
+//Delete initiative
+router.delete('/:id', async (req, res) => {
+    let initiative
+    try {
+        initiative = await Initiative.findById(req.params.id)
+        await initiative.remove()
+        res.redirect('/initiativeTracker')
+    } catch {
+        if(initiative == null) {
+            res.redirect('/')
+        } else {
+            res.redirect(`/initiativeTracker/${initiative.id}`)
+        }
+    }
+})
 
 module.exports = router

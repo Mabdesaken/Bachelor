@@ -1,6 +1,6 @@
 <h1>Players</h1>
 <div>
     <% initiativeTracker.forEach(init => { %>
-        <div><%= init.name %></div>
+                <div><a href="/initiativeTracker/<%= init.id %>"><%= init.name %></a></div>
     <% }) %>
 </div>
