@@ -75,6 +75,7 @@ router.put('/:id', async (req, res) => {
     try {
         initiative = await Initiative.findById(req.params.id)
         initiative.name = req.body.name
+        initiative.number = req.body.number
         await initiative.save()
         res.redirect(`/initiativeTracker/${initiative.id}`)
     } catch {
