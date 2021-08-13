@@ -1,4 +1,6 @@
 <h3>Edit Character</h3>
+<!-- We can't make put calls from the router, but because we installed the methodOverride library,
+we can override the post method by including ?_method=PUT in our url -->
 <form action="/initiativeTracker/<%= initiativeTracker.id %>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
     <a href="/authors/<%= initiativeTracker.id %>">Cancel</a>

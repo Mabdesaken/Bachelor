@@ -8,10 +8,12 @@
     <title>DNDHelper</title>
 </head>
 <body>
+    <!-- This layout defines the layout for all the views -->
     <div class="container">
         <%- include('../partials/header.ejs') %>
         <div class="inner-container">
             <%- include('../partials/errorMessage.ejs')%>
+            <!-- Everything the routes show are sent to this body tag -->
             <%- body %>
         </div>
     </div>

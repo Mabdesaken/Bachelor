@@ -5,7 +5,9 @@ if(process.env.NODE_ENV !== 'production'){
 const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
+//importing library to better help parse the request bodies
 const bodyParser = require('body-parser')
+//library used to call put and delete requests from router.
 const methodOverride = require('method-override')
 
 //Mongo db connection setup

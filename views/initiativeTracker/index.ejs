@@ -7,6 +7,7 @@
         <a href="/initiativeTracker/<%= initiative.id %>">View</a>
         <a href="/initiativeTracker/<%= initiative.id %>/edit">Edit</a>
         <span>
+            <!-- Here we include the delete form from our partials folder to avoid making the same code constantly -->
             <%- include('../partials/deleteForm',
             {url: `/initiativeTracker/${initiative.id}`})%>
         </span>
