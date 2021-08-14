@@ -3,6 +3,6 @@
 we can override the post method by including ?_method=PUT in our url -->
 <form action="/initiativeTracker/<%= initiativeTracker.id %>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
-    <a href="/authors/<%= initiativeTracker.id %>">Cancel</a>
+    <a href="/initiativeTracker/<%= initiativeTracker.id %>">Cancel</a>
     <button type="submit">Update</button>
 </form>
