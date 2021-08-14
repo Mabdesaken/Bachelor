@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
     try {
         //get initiative object from server, by using the id of the page
         const init = await Initiative.findById(req.params.id)
-        //find all the items that inherits this player/initiative to show their inventory
+        //find all the items that references this player/initiative to show their inventory
         const items = await InvItem.find({ owner: init.id })
         //tell the view to render to make a view for the object
         res.render('initiativeTracker/show', {

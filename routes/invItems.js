@@ -17,11 +17,12 @@ router.get('/',  async (req, res) => {
     if (req.query.name != null && req.query.name !== '') {
         query = query.regex('name', req.query.name)
     }
+
     try {
         const items = await query.exec()
         res.render(indexPath, {
             invItems: items,
-            searchOptions: req.query
+            searchOptions: req.query,
         })
     } catch {
         res.redirect('/')
